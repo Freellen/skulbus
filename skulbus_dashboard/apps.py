@@ -1,6 +1,5 @@
-from django.apps import AppConfig
+from django.apps import AppConfig as DjangoAppConfig
 
 
-class SkulbusDashboardConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
+class AppConfig(DjangoAppConfig):
     name = 'skulbus_dashboard'
