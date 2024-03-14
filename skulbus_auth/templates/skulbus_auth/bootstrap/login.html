@@ -1,7 +1,7 @@
-{% extends 'somans_dashboard/bootstrap/base.html' %}
+{% extends 'skulbus_dashboard/bootstrap/base.html' %}
 {% load static %}
 {% block title %}
-    <title> IDAP | LOGIN </title>
+    <title> SKULBUS | LOGIN </title>
 {% endblock %}
 
 {% block login %}
@@ -11,17 +11,18 @@
                 <!-- BEGIN: Login Info -->
                 <div class="hidden xl:flex flex-col min-h-screen">
                     <a href="" class="-intro-x flex items-center pt-5">
-                        <img alt="Midone - HTML Admin Template" class="w-6" src="{% static 'dist/images/stanbic.png' %}">
-                        <span class="text-white text-lg ml-3"> IDAP </span>
+                        <img alt="Midone - HTML Admin Template" class="w-6" src="{% static 'dist/images/skulbus.png' %}">
+                        <span class="text-white text-lg ml-3"> SKULBUS </span>
                     </a>
                     <div class="my-auto">
                         <img alt="SOMANS" class="-intro-x w-1/2 -mt-16" src="{% static 'dist/images/illustration.svg' %}">
                         <div class="-intro-x text-white font-medium text-4xl leading-tight mt-10">
-                            360 View of Infrastructure Resources
+                            Bus Services
                             <br>
-                            Stanbic Bank Tanzania.
+                            For Public Schools.
                         </div>
-                        <div class="-intro-x mt-5 text-lg text-white text-opacity-70 dark:text-slate-400">All in a Centralized Location</div>
+                        <div
+                                class="-intro-x mt-5 text-lg text-white text-opacity-70 dark:text-slate-400">All in the tip of your finger</div>
                     </div>
                 </div>
                 <!-- END: Login Info -->
@@ -33,7 +34,9 @@
                             <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center xl:text-left">
                                 Sign In
                             </h2>
-                            <div class="intro-x mt-2 text-slate-400 xl:hidden text-center">360 View of Infrastructure Resources within Stanbic Bank Tanzania</div>
+                            <div
+                                    class="intro-x mt-2 text-slate-400 xl:hidden text-center">Bus Service For Public Schools
+                            </div>
                             <div class="intro-x mt-8">
                                 <input type="text" name="username" class="intro-x login__input form-control py-3 px-4 block" placeholder="Username">
                                 <input type="password" name="password" class="intro-x login__input form-control py-3 px-4 block mt-4" placeholder="Password">
@@ -43,10 +46,9 @@
                                     <input id="remember-me" type="checkbox" class="form-check-input border mr-2">
                                     <label class="cursor-pointer select-none" for="remember-me">Remember me</label>
                                 </div>
-                                <a href="">Use your Idap -AD</a>
                             </div>
                             <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
-                                <input type="submit" class="btn btn-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Login</input>
+                                <input type="submit" value="Login" class="btn btn-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">
                             </div>
                         </form>
                         <div class="intro-x mt-10 xl:mt-24 text-slate-600 dark:text-slate-500 text-center xl:text-left"> By signin up, you agree to our <a class="text-primary dark:text-slate-200" href="">Terms and Conditions</a> & <a class="text-primary dark:text-slate-200" href="">Privacy Policy</a> </div>
