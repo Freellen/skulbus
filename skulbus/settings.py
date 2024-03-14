@@ -41,7 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'skulbus_auth.apps.AppConfig',
+    'skulbus_model.apps.AppConfig',
+    # 'skulbus_modal_admin.apps.AppConfig',
     'skulbus_dashboard.apps.AppConfig',
+    'skulbus_schools.apps.AppConfig',
 ]
 
 MIDDLEWARE = [
