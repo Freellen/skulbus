@@ -2,13 +2,14 @@ from django import template
 
 register = template.Library()
 
+
 @register.inclusion_tag(
-    f"skulbus_schools/bootstrap/buttons/edit_school_info.html",
+    f"skulbus_parents/bootstrap/buttons/edit_school_info.html",
     takes_context=True,
 )
-def edit_school_info(context, obj):
+def edit_parent_info(context, obj):
     return dict(
-        # href=reverse(school_edit_url)
+
     )
 
 
