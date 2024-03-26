@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     # 'skulbus_modal_admin.apps.AppConfig',
     'skulbus_dashboard.apps.AppConfig',
     'skulbus_schools.apps.AppConfig',
+    'skulbus_parents.apps.AppConfig',
+    'skulbus_students.apps.AppConfig',
 ]
 
 MIDDLEWARE = [
