@@ -1,0 +1,55 @@
+{% extends 'skulbus_dashboard/bootstrap/base.html' %}
+{% load schools_tags %}
+{% block title %}
+    <title> SKULBUS | SCHOOLS </title>
+{% endblock %}
+{% block content %}
+    <div class="content content--top-nav">
+        <div class="grid grid-cols-12 gap-6 mt-5">
+            <div class="intro-y col-span-12 lg:col-span-10">
+                <!-- BEGIN: Striped Rows -->
+                    <div class="intro-y box mt-5">
+                        <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60">
+                            <h2 class="font-medium text-base mr-auto">
+                                LIST OF SCHOOLS
+                            </h2>
+                            <a href="{{ add_school }}" class="pull-right btn btn-primary mr-1 mb-1">Add New School</a>
+                        </div>
+                        <div class="p-5" id="striped-rows-table">
+                            <div class="preview">
+                                <div class="overflow-x-auto">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th class="whitespace-nowrap">#</th>
+                                                <th class="whitespace-nowrap">School Name</th>
+                                                <th class="whitespace-nowrap">Address</th>
+                                                <th class="whitespace-nowrap">Phone Number</th>
+                                                <th class="whitespace-nowrap">Latitude</th>
+                                                <th class="whitespace-nowrap">Longitude</th>
+                                                <th class="whitespace-nowrap">Manage</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                             {% for data in object_lists %}
+                                                 <tr>
+                                                     <td><input type="checkbox" name="selected_{{ data.id }}" class="form-check-input"></td>
+                                                     <td>{{ data.name }}</td>
+                                                     <td>{{ data.address }}</td>
+                                                     <td>{{ data.phone_number }}</td>
+                                                     <td>{{ data.latitude }}</td>
+                                                     <td>{{ data.longitude }}</td>
+                                                     <td><a href="{{ data.href }}" class="btn btn-primary mr-1 mb-1">Edit</a></td>
+                                                 </tr>
+                                             {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- END: Striped Rows -->
+            </div>
+        </div>
+    </div>
+{% endblock %}

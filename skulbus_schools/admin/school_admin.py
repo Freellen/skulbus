@@ -20,8 +20,27 @@ class SchoolAdmin(SimpleHistoryAdmin):
                     "phone_number",
                     "longitude",
                     "latitude",
+                    "active"
                 ),
             },
         ),
         audit_fieldset_tuple,
+    )
+
+    list_display = (
+        "name",
+        "address",
+        "phone_number",
+        "longitude",
+        "latitude",
+        "active",
+    )
+
+    search_fields = (
+        "name",
+    )
+
+    list_filter = (
+        "name",
+        "active",
     )

@@ -12,6 +12,7 @@ env = environ.Env(
     DATABASE_SQLITE_ENABLED=(bool, False),
     FIN_START_RANGE=(int, 4),
     FIN_END_RANGE=(int, 26),
+    SKULBUS_PAGINATION=(int, 10)
 )
 
 environ.Env.read_env(ENV_DIR)
@@ -27,6 +28,7 @@ SECRET_KEY = env.str("DJANGO_SECRET_KEY")
 DEBUG = env("DJANGO_DEBUG")
 
 APP_NAME = env.str("DJANGO_APP_NAME")
+SKULBUS_PAGINATION = env("SKULBUS_PAGINATION")
 
 ALLOWED_HOSTS = ["*"]
 

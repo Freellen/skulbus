@@ -25,6 +25,13 @@ class School(skulbus_models.BaseUuidModel):
         max_digits=16,
         decimal_places=6
     )
+    active = models.BooleanField(
+        verbose_name="Active",
+        default=True,
+    )
+
+    def __str__(self):
+        return self.name
 
     class Meta(skulbus_models.BaseUuidModel.Meta):
         verbose_name = "School"
