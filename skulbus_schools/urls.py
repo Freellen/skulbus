@@ -7,6 +7,7 @@ app_name = "skulbus_schools"
 
 urlpatterns = [
     path("admin/", skulbus_schools_admin.urls),
-    path("schools/", SchoolsListView.as_view(), name="schools-list"),
+    path("schools/", RedirectView.as_view(
+        url="/skulbus_schools/admin/skulbus_schools/school/"), name="schools-list"),
     path("", RedirectView.as_view(url="/skulbus_schools/admin/"), name="home_url"),
 ]
