@@ -32,7 +32,9 @@ class StudentAdmin(SimpleHistoryAdmin):
         "middlename",
         "lastname",
         "parent",
+        "parent_phone",
         "school",
+        "school_phone",
         "active",
     )
 
@@ -44,6 +46,13 @@ class StudentAdmin(SimpleHistoryAdmin):
     )
 
     list_filter = (
+        "active",
         "school",
     )
+
+    def parent_phone(self, obj):
+        return f'{obj.parent.phone}'
+
+    def school_phone(self, obj):
+        return f'{obj.school.phone_number}'
 
