@@ -16,7 +16,7 @@ class ParentsListView(SkulBusLoginMixin, ListboardView, ListView):
         context = super().get_context_data(**kwargs)
         context.update(
             add_parent=self.get_parent_url,
-            object_lists=self.get_wrapped_queryset(self.queryset)
+            object_lists=self.get_wrapped_queryset(self.queryset, 'skulbus_parents:parents-list')
         )
         return context
 

@@ -43,12 +43,12 @@ class BaseListboardView:
         except (ValueError, AttributeError):
             return self.listboard_model
 
-    def get_wrapped_queryset(self, queryset):
+    def get_wrapped_queryset(self, queryset, url=None):
         wrapped_objs = []
         for obj_qry in queryset:
             obj = self.get_model_dict(obj_qry)
 
-            obj['href'] = self.listboard_model_cls().admin_url(obj_qry.id)
+            obj['href'] = f'{self.listboard_model_cls().admin_url(obj_qry.id)}?next={url}'
             wrapped_objs.append(obj)
         return wrapped_objs
 

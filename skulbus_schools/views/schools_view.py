@@ -17,7 +17,8 @@ class SchoolsListView(SkulBusLoginMixin, ListboardView, ListView):
         context = super().get_context_data(**kwargs)
         context.update(
             add_school=self.get_school_url,
-            object_lists=self.get_wrapped_queryset(self.queryset)
+            object_lists=self.get_wrapped_queryset(self.queryset,
+                                                   'skulbus_schools:schools-list')
         )
         return context
 
