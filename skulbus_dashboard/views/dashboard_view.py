@@ -3,6 +3,7 @@ from django.apps import apps as django_apps
 
 from skulbus_auth.view_mixins import SkulBusLoginMixin
 from skulbus_buses.models import Bus
+from skulbus_drivers.models import Driver
 from skulbus_parents.models import Parent
 from skulbus_routes.models import Route
 from skulbus_schools.models import School
@@ -20,12 +21,14 @@ class DashboardView(SkulBusLoginMixin, TemplateView):
         buses = Bus.objects.all().count()
         schools = School.objects.all().count()
         routes = Route.objects.all().count()
+        drivers = Driver.objects.all().count()
         context.update(
             students=students,
             parents=parents,
             buses=buses,
             schools=schools,
             routes=routes,
+            drivers=drivers,
         )
         return context
 
