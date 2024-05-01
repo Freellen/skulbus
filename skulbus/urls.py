@@ -9,5 +9,6 @@ urlpatterns = [
     *paths_for_urlpatterns("skulbus_students"),
     *paths_for_urlpatterns("skulbus_parents"),
     *paths_for_urlpatterns("skulbus_buses"),
+    *paths_for_urlpatterns("skulbus_routes"),
     path("", include("skulbus_auth.urls"))
 ]

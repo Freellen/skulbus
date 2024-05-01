@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'skulbus_parents.apps.AppConfig',
     'skulbus_students.apps.AppConfig',
     'skulbus_buses.apps.AppConfig',
+    'skulbus_routes.apps.AppConfig',
 ]
 
 MIDDLEWARE = [

@@ -2,6 +2,11 @@ from django.views.generic.base import TemplateView
 from django.apps import apps as django_apps
 
 from skulbus_auth.view_mixins import SkulBusLoginMixin
+from skulbus_buses.models import Bus
+from skulbus_parents.models import Parent
+from skulbus_routes.models import Route
+from skulbus_schools.models import School
+from skulbus_students.models import Student
 
 
 class DashboardView(SkulBusLoginMixin, TemplateView):
@@ -9,9 +14,19 @@ class DashboardView(SkulBusLoginMixin, TemplateView):
     listboard_model = "skulbus_schools.school"
 
     def get_context_data(self, **kwargs):
-        print(self.get_school_url)
         context = super().get_context_data(**kwargs)
-        context.update()
+        students = Student.objects.all().count()
+        parents = Parent.objects.all().count()
+        buses = Bus.objects.all().count()
+        schools = School.objects.all().count()
+        routes = Route.objects.all().count()
+        context.update(
+            students=students,
+            parents=parents,
+            buses=buses,
+            schools=schools,
+            routes=routes,
+        )
         return context
 
     @property
