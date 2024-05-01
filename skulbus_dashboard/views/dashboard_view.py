@@ -5,7 +5,7 @@ from skulbus_auth.view_mixins import SkulBusLoginMixin
 from skulbus_buses.models import Bus
 from skulbus_drivers.models import Driver
 from skulbus_parents.models import Parent
-from skulbus_routes.models import Route
+from skulbus_routes.models import Route, BusStop
 from skulbus_schools.models import School
 from skulbus_students.models import Student
 
@@ -22,6 +22,7 @@ class DashboardView(SkulBusLoginMixin, TemplateView):
         schools = School.objects.all().count()
         routes = Route.objects.all().count()
         drivers = Driver.objects.all().count()
+        bus_stops = BusStop.objects.all().count()
         context.update(
             students=students,
             parents=parents,
@@ -29,6 +30,7 @@ class DashboardView(SkulBusLoginMixin, TemplateView):
             schools=schools,
             routes=routes,
             drivers=drivers,
+            bus_stops=bus_stops,
         )
         return context
 

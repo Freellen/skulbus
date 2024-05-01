@@ -8,5 +8,7 @@ urlpatterns = [
     path("admin/", skulbus_routes_admin.urls),
     path("routes/", RedirectView.as_view(
         url="/skulbus_routes/admin/skulbus_routes/route/"), name="route-list"),
+    path("bus-stop/", RedirectView.as_view(
+        url="/skulbus_routes/admin/skulbus_routes/busstop/"), name="bus-stop-list"),
     path("", RedirectView.as_view(url="/skulbus_routes/admin/"), name="home_url"),
 ]
