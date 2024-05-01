@@ -10,5 +10,6 @@ urlpatterns = [
     *paths_for_urlpatterns("skulbus_parents"),
     *paths_for_urlpatterns("skulbus_buses"),
     *paths_for_urlpatterns("skulbus_routes"),
+    *paths_for_urlpatterns("skulbus_drivers"),
     path("", include("skulbus_auth.urls"))
 ]
