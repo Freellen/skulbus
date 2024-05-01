@@ -18,6 +18,7 @@ class BusAdmin(SimpleHistoryAdmin):
                     "reg_number",
                     "model",
                     "seats",
+                    "route",
                     "active"
                 ),
             },
@@ -29,6 +30,7 @@ class BusAdmin(SimpleHistoryAdmin):
         "reg_number",
         "model",
         "seats",
+        "route",
         "active",
     )
 
@@ -36,6 +38,7 @@ class BusAdmin(SimpleHistoryAdmin):
         "reg_number",
         "model",
         "seats",
+        "route",
         "active",
     )
 
@@ -43,7 +46,11 @@ class BusAdmin(SimpleHistoryAdmin):
         "reg_number",
         "model",
         "seats",
+        "route",
         "active",
     )
+
+    def route(self, obj):
+        return f'{obj.route.name}'
 
 

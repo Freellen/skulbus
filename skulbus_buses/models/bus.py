@@ -1,8 +1,16 @@
 from django.db import models
 from skulbus_model import models as skulbus_models
+from skulbus_routes.models import Route
 
 
 class Bus(skulbus_models.BaseUuidModel):
+    route = models.ForeignKey(
+        Route,
+        on_delete=models.CASCADE,
+        related_name="bus_route",
+        verbose_name="Route",
+        null=True,
+    )
     reg_number = models.CharField(
         verbose_name="Registration Number",
         max_length=20,
