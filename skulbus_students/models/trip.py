@@ -1,11 +1,14 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
 
 from skulbus_model import models as skulbus_models
+from skulbus_parents.models import Parent
 from skulbus_students.choices import TRIP_STATUS
 
 
 class StudentTrip(skulbus_models.BaseUuidModel):
+    parent = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
     firstname = models.CharField(
         verbose_name="First Name",
         max_length=120,

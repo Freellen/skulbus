@@ -15,6 +15,7 @@ class StudentTripAdmin(SimpleHistoryAdmin):
             None,
             {
                 "fields": (
+                    "parent",
                     "firstname",
                     "middlename",
                     "lastname",
