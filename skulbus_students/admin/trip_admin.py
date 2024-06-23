@@ -20,6 +20,7 @@ class StudentTripAdmin(SimpleHistoryAdmin):
                     "middlename",
                     "lastname",
                     "verification",
+                    "bus_stop",
                     "latitude",
                     "longitude",
                     "status",

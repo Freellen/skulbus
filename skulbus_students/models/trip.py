@@ -24,6 +24,11 @@ class StudentTrip(skulbus_models.BaseUuidModel):
         verbose_name="Verification Code",
         max_length=120,
     )
+    bus_stop = models.CharField(
+        verbose_name="Bus Stop",
+        max_length=120,
+        null=True,
+    )
     latitude = models.DecimalField(
         verbose_name="Latitude",
         max_digits=16,
