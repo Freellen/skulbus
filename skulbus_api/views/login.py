@@ -20,16 +20,3 @@ class LoginAPI(APIView):
             return Response({'error': 'Invalid credentials'},
                             status=status.HTTP_401_UNAUTHORIZED)
 
-
-class UserDetailAPI(APIView):
-    permission_classes = [IsAuthenticated]
-
-    def get(self, request):
-        user = request.user
-        user_data = {
-            'id': user.id,
-            'username': user.username,
-            'email': user.email,
-            # Add other user fields as needed
-        }
-        return Response(user_data)

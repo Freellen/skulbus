@@ -1,10 +1,13 @@
+from autoslug import AutoSlugField
 from django.db import models
 from skulbus_model import models as skulbus_models
 from skulbus_parents.models import Parent
+from skulbus_routes.models import Route
 from skulbus_schools.models import School
 
 
 class Student(skulbus_models.BaseUuidModel):
+    route = models.OneToOneField(Route, on_delete=models.CASCADE, blank=True)
     firstname = models.CharField(
         verbose_name="First Name",
         max_length=120,
@@ -28,6 +31,12 @@ class Student(skulbus_models.BaseUuidModel):
         on_delete=models.CASCADE,
         related_name="student",
         verbose_name="School",
+    )
+    slug = AutoSlugField(
+        verbose_name="Verification",
+        populate_from='lastname',
+        unique=True,
+        always_update=True,
     )
     active = models.BooleanField(
         verbose_name="Active",

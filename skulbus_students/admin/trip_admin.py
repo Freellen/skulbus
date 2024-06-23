@@ -3,11 +3,11 @@ from django_audit_fields import audit_fieldset_tuple
 from simple_history.admin import SimpleHistoryAdmin
 
 from ..admin_site import skulbus_students_admin
-from ..models import Student
+from ..models import StudentTrip
 
 
-@admin.register(Student, site=skulbus_students_admin)
-class StudentAdmin(SimpleHistoryAdmin):
+@admin.register(StudentTrip, site=skulbus_students_admin)
+class StudentTripAdmin(SimpleHistoryAdmin):
     # form = SchoolForm
 
     fieldsets = (
@@ -15,13 +15,14 @@ class StudentAdmin(SimpleHistoryAdmin):
             None,
             {
                 "fields": (
-                    "route",
                     "firstname",
                     "middlename",
                     "lastname",
-                    "parent",
-                    "school",
-                    "active"
+                    "verification",
+                    "latitude",
+                    "longitude",
+                    "status",
+                    "timestamp",
                 ),
             },
         ),
@@ -32,30 +33,19 @@ class StudentAdmin(SimpleHistoryAdmin):
         "firstname",
         "middlename",
         "lastname",
-        "slug",
-        "route",
-        "parent",
-        "parent_phone",
-        "school",
-        "school_phone",
-        "active",
+        "verification",
+        "latitude",
+        "longitude",
+        "status",
+        "timestamp",
     )
 
     search_fields = (
         "firstname",
         "lastname",
-        "parent",
-        "school",
     )
 
     list_filter = (
-        "active",
-        "school",
+        "status",
     )
-
-    def parent_phone(self, obj):
-        return f'{obj.parent.phone}'
-
-    def school_phone(self, obj):
-        return f'{obj.school.phone_number}'
 
