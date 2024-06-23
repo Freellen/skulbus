@@ -16,8 +16,11 @@ class DriverAdmin(SimpleHistoryAdmin):
             {
                 "fields": (
                     "firstname",
-                    "middlename",
                     "lastname",
+                    "username",
+                    "password",
+                    "phone",
+                    "email",
                     "driving_licence",
                     "vehicle",
                     "active"
@@ -30,22 +33,24 @@ class DriverAdmin(SimpleHistoryAdmin):
     list_display = (
         "driving_licence",
         "firstname",
-        "middlename",
         "lastname",
+        "username",
+        "phone",
+        "email",
         "vehicle",
         "active",
     )
 
     search_fields = (
         "driving_licence",
-        "firstname",
-        "lastname",
+        "username",
+        "phone",
+        "email",
         "vehicle",
         "active",
     )
 
     list_filter = (
-        "driving_licence",
         "vehicle",
         "active",
     )

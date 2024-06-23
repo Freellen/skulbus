@@ -18,12 +18,12 @@ class School(skulbus_models.BaseUuidModel):
     longitude = models.DecimalField(
         verbose_name="Longitude",
         max_digits=16,
-        decimal_places=6
+        decimal_places=8
     )
     latitude = models.DecimalField(
         verbose_name="Latitude",
         max_digits=16,
-        decimal_places=6
+        decimal_places=8
     )
     active = models.BooleanField(
         verbose_name="Active",

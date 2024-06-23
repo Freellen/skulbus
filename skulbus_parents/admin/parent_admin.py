@@ -15,13 +15,13 @@ class ParentAdmin(SimpleHistoryAdmin):
             None,
             {
                 "fields": (
+                    "user",
                     "firstname",
-                    "middlename",
                     "lastname",
                     "address",
                     "phone",
                     "email",
-                    "active"
+                    "active",
                 ),
             },
         ),
@@ -30,11 +30,10 @@ class ParentAdmin(SimpleHistoryAdmin):
 
     list_display = (
         "firstname",
-        "middlename",
         "lastname",
         "address",
         "phone",
-        "email",
+        "username",
         "active",
     )
 
@@ -42,10 +41,9 @@ class ParentAdmin(SimpleHistoryAdmin):
         "firstname",
         "lastname",
         "phone",
-        "email",
+        "username",
     )
 
     list_filter = (
-        "phone",
-        "email",
+        "active",
     )

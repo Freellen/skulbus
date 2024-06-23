@@ -9,15 +9,30 @@ class Driver(skulbus_models.BaseUuidModel):
         verbose_name="First Name",
         max_length=120,
     )
-    middlename = models.CharField(
-        verbose_name="Middle Name",
-        max_length=120,
-        blank=True,
-        null=True,
-    )
     lastname = models.CharField(
         verbose_name="Last Name",
         max_length=120,
+    )
+    username = models.CharField(
+        verbose_name="Username",
+        max_length=45,
+        unique=True,
+        null=True
+    )
+    password = models.CharField(
+        verbose_name="Password",
+        max_length=128
+    )
+    phone = models.CharField(
+        verbose_name="Phone Number",
+        max_length=45,
+        unique=True,
+        null=True
+    )
+    email = models.EmailField(
+        verbose_name="Email Address",
+        unique=True,
+        null=True,
     )
     driving_licence = models.CharField(
         verbose_name="Driving licence Number",
@@ -34,9 +49,6 @@ class Driver(skulbus_models.BaseUuidModel):
         verbose_name="Active",
         default=True,
     )
-
-    def __str__(self):
-        return f'{self.driving_licence} {self.firstname} {self.lastname}'
 
     class Meta(skulbus_models.BaseUuidModel.Meta):
         verbose_name = "Driver"
