@@ -3,6 +3,7 @@ from django.db import models
 from django.utils import timezone
 
 from skulbus_model import models as skulbus_models
+from skulbus_routes.models import BusStop
 from skulbus_students.choices import TRIP_STATUS
 
 
@@ -24,7 +25,12 @@ class StudentTrip(skulbus_models.BaseUuidModel):
         verbose_name="Verification Code",
         max_length=120,
     )
-    bus_stop = models.CharField(
+    bus_stop = models.ForeignKey(
+        BusStop,
+        on_delete=models.CASCADE,
+        verbose_name="Bus Stop",
+    )
+    bus_stop_name = models.CharField(
         verbose_name="Bus Stop",
         max_length=120,
         null=True,
