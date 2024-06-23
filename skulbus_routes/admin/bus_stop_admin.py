@@ -17,8 +17,8 @@ class BusStopAdmin(SimpleHistoryAdmin):
                 "fields": (
                     "name",
                     "route",
-                    "longitude",
                     "latitude",
+                    "longitude",
                     "active"
                 ),
             },
