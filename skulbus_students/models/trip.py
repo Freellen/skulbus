@@ -3,7 +3,6 @@ from django.db import models
 from django.utils import timezone
 
 from skulbus_model import models as skulbus_models
-from skulbus_parents.models import Parent
 from skulbus_students.choices import TRIP_STATUS
 
 
