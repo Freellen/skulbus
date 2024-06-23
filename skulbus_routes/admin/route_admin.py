@@ -17,7 +17,11 @@ class RouteAdmin(SimpleHistoryAdmin):
                 "fields": (
                     "name",
                     "starting_point",
+                    "start_latitude",
+                    "start_longitude",
                     "end_point",
+                    "end_latitude",
+                    "end_longitude",
                     "active"
                 ),
             },

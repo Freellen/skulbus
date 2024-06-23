@@ -11,9 +11,33 @@ class Route(skulbus_models.BaseUuidModel):
         verbose_name="Start At",
         max_length=120,
     )
+    start_latitude = models.DecimalField(
+        verbose_name="Route Start Latitude",
+        max_digits=16,
+        decimal_places=6,
+        null=True,
+    )
+    start_longitude = models.DecimalField(
+        verbose_name="Route Start Longitude",
+        max_digits=16,
+        decimal_places=6,
+        null=True,
+    )
     end_point = models.CharField(
         verbose_name="End At",
         max_length=120,
+    )
+    end_latitude = models.DecimalField(
+        verbose_name="Route End Latitude",
+        max_digits=16,
+        decimal_places=6,
+        null=True,
+    )
+    end_longitude = models.DecimalField(
+        verbose_name="Route End Longitude",
+        max_digits=16,
+        decimal_places=6,
+        null=True,
     )
     active = models.BooleanField(
         verbose_name="Active",
