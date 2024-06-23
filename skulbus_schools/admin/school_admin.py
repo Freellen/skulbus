@@ -18,8 +18,8 @@ class SchoolAdmin(SimpleHistoryAdmin):
                     "name",
                     "address",
                     "phone_number",
-                    "longitude",
                     "latitude",
+                    "longitude",
                     "active"
                 ),
             },

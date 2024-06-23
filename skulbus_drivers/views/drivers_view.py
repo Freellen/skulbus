@@ -8,14 +8,13 @@ from skulbus_auth.view_mixins import SkulBusLoginMixin
 from skulbus_buses.models import Bus
 from skulbus_dashboard.view_mixins import ListboardView
 from skulbus_drivers.models import Driver
-from skulbus_parents.models import Parent
 
 
 class DriversListView(SkulBusLoginMixin, ListboardView, ListView):
     template_name = f"skulbus_drivers/bootstrap/drivers.html"
     listboard_model = "skulbus_drivers.driver"
     paginate_by = settings.SKULBUS_PAGINATION
-    queryset = Driver.objects.all().order_by('-id')
+    queryset = Driver.objects.all()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -23,8 +22,7 @@ class DriversListView(SkulBusLoginMixin, ListboardView, ListView):
         context.update(
             vehicles=vehicles,
             add_driver=self.get_parent_url,
-            object_lists=self.get_wrapped_queryset(self.queryset,
-                                                   'skulbus_drivers:drivers-list')
+            object_lists=self.queryset
         )
         return context
 

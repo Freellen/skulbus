@@ -13,14 +13,13 @@ class ParentsListView(SkulBusLoginMixin, ListboardView, ListView):
     template_name = f"skulbus_parents/bootstrap/parents.html"
     listboard_model = "skulbus_parents.parent"
     paginate_by = settings.SKULBUS_PAGINATION
-    queryset = Parent.objects.all().order_by('-id')
+    queryset = Parent.objects.all()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update(
             add_parent=self.get_parent_url,
-            object_lists=self.get_wrapped_queryset(self.queryset,
-                                                   'skulbus_parents:parents-list')
+            object_lists=self.queryset
         )
         return context
 
