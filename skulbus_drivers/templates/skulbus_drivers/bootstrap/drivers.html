@@ -1,0 +1,126 @@
+{% extends 'skulbus_dashboard/bootstrap/base.html' %}
+{% load parents_tags %}
+{% block title %}
+    <title> SKULBUS | DRIVERS </title>
+{% endblock %}
+{% block content %}
+    <div class="content content--top-nav">
+        {% if request.GET.response == 'success' %}
+            <div class="alert alert-success-soft alert-dismissible show flex items-center mb-2" role="alert"> <i data-lucide="thumbs-up" class="w-6 h-6 mr-2"></i> {{ request.GET.message }} <button type="button" class="btn-close text-white" data-tw-dismiss="alert" aria-label="Close"> <i data-lucide="x" class="w-4 h-4"></i> </button></div>
+        {% elif request.GET.response == 'error' %}
+            <div class="alert alert-danger-soft alert-dismissible show flex items-center mb-2" role="alert"> <i data-lucide="alert-octagon" class="w-6 h-6 mr-2"></i> {{ request.GET.message }} <button type="button" class="btn-close text-white" data-tw-dismiss="alert" aria-label="Close"> <i data-lucide="x" class="w-4 h-4"></i> </button></div>
+        {% endif %}
+        <div class="grid grid-cols-12 gap-6 mt-5">
+            <div class="intro-y col-span-12 lg:col-span-10">
+                <!-- BEGIN: Striped Rows -->
+                    <div class="intro-y box mt-5">
+                        <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60">
+                            <h2 class="font-medium text-base mr-auto">
+                                LIST OF DRIVERS
+                            </h2>
+                            <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#add-driver" class="pull-right btn btn-primary mr-1 mb-1">Add New Driver</a>
+                            <div id="add-driver" class="modal" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-xl">
+                                    <div class="modal-content">
+                                        <div class="intro-y box mt-5">
+                                            <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
+                                                <h2 class="font-medium text-base mr-auto">
+                                                    REGISTER DRIVER
+                                                </h2>
+                                            </div>
+                                            <div id="input-groups" class="p-5">
+                                                <div class="preview">
+                                                    <form action="{% url 'skulbus_drivers:register-drivers' %}" method="post">
+                                                        {% csrf_token %}
+                                                        <div>
+                                                            <label for="regular-form-1" class="form-label">Vehicle</label>
+                                                            <select name="vehicle" class="form-control" required>
+                                                                <option value="">Select vehicle</option>
+                                                                {% for vehicle in vehicles%}
+                                                                    <option
+                                                                            value="{{ vehicle.id}}">{{vehicle.reg_number}}</option>
+                                                                {% endfor %}
+                                                            </select>
+                                                        </div><br>
+                                                        <div>
+                                                            <label for="regular-form-1" class="form-label">First Name</label>
+                                                            <input type="text" name="firstname" class="form-control" placeholder="First Name" aria-label="First Name">
+                                                        </div><br>
+                                                        <div>
+                                                            <label for="regular-form-1" class="form-label">Last Name</label>
+                                                            <input type="text" name="lastname" class="form-control" placeholder="Last Name" aria-label="Last Name">
+                                                        </div><br>
+                                                        <div>
+                                                            <label for="regular-form-1" class="form-label">Driving licence</label>
+                                                            <input type="text" name="driving_licence" class="form-control" placeholder="Driving Licence" aria-label="Driving Licence">
+                                                        </div><br>
+                                                        <div>
+                                                            <label for="regular-form-1" class="form-label">Username</label>
+                                                            <input type="text" name="username" class="form-control" placeholder="Username" aria-label="Username">
+                                                        </div><br>
+                                                        <div>
+                                                            <label for="regular-form-1" class="form-label">Password</label>
+                                                            <input type="password" name="password" class="form-control" placeholder="Password" aria-label="Password">
+                                                        </div><br>
+                                                        <div>
+                                                            <label for="regular-form-1" class="form-label">Phone Number</label>
+                                                            <input type="text" name="phone" class="form-control" placeholder="Phone Number" aria-label="Phone Number">
+                                                        </div><br>
+                                                        <div>
+                                                            <label for="regular-form-1" class="form-label">Email Address</label>
+                                                            <input type="text" name="email" class="form-control" placeholder="Email Address" aria-label="Email Address">
+                                                        </div><br>
+                                                        <div>
+                                                            <input type="hidden" name="next_url_name" value="driver-list">
+                                                            <input type="submit" value="Submit" class="btn btn-primary w-1/2 sm:w-auto mr-2 pull-right">
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-5" id="striped-rows-table">
+                            <div class="preview">
+                                <div class="overflow-x-auto">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th class="whitespace-nowrap">#</th>
+                                                <th class="whitespace-nowrap"> Username</th>
+                                                <th class="whitespace-nowrap">First Name</th>
+                                                <th class="whitespace-nowrap">Middle Name</th>
+                                                <th class="whitespace-nowrap">Last Name</th>
+                                                <th class="whitespace-nowrap">Address</th>
+                                                <th class="whitespace-nowrap">Phone Number</th>
+                                                <th class="whitespace-nowrap">Email Address</th>
+                                                <th class="whitespace-nowrap">Manage</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                             {% for data in object_lists %}
+                                                 <tr>
+                                                     <td><input type="checkbox" name="selected_{{ data.id }}" class="form-check-input"></td>
+                                                     <td>{{ data.username }}</td>
+                                                     <td>{{ data.firstname }}</td>
+                                                     <td>{{ data.middlename }}</td>
+                                                     <td>{{ data.lastname }}</td>
+                                                     <td>{{ data.address }}</td>
+                                                     <td>{{ data.phone }}</td>
+                                                     <td>{{ data.email }}</td>
+                                                     <td><a href="{{ data.href }}" class="btn btn-primary mr-1 mb-1">Edit</a></td>
+                                                 </tr>
+                                             {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- END: Striped Rows -->
+            </div>
+        </div>
+    </div>
+{% endblock %}

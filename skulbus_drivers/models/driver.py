@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 from skulbus_buses.models import Bus
@@ -5,6 +6,7 @@ from skulbus_model import models as skulbus_models
 
 
 class Driver(skulbus_models.BaseUuidModel):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True)
     firstname = models.CharField(
         verbose_name="First Name",
         max_length=120,
@@ -49,6 +51,9 @@ class Driver(skulbus_models.BaseUuidModel):
         verbose_name="Active",
         default=True,
     )
+
+    def __str__(self):
+        return f'{self.firstname} {self.lastname}'
 
     class Meta(skulbus_models.BaseUuidModel.Meta):
         verbose_name = "Driver"

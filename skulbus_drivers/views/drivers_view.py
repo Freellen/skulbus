@@ -5,22 +5,26 @@ from django.views.generic import ListView
 from django.conf import settings
 
 from skulbus_auth.view_mixins import SkulBusLoginMixin
+from skulbus_buses.models import Bus
 from skulbus_dashboard.view_mixins import ListboardView
+from skulbus_drivers.models import Driver
 from skulbus_parents.models import Parent
 
 
-class ParentsListView(SkulBusLoginMixin, ListboardView, ListView):
-    template_name = f"skulbus_parents/bootstrap/parents.html"
-    listboard_model = "skulbus_parents.parent"
+class DriversListView(SkulBusLoginMixin, ListboardView, ListView):
+    template_name = f"skulbus_drivers/bootstrap/drivers.html"
+    listboard_model = "skulbus_drivers.driver"
     paginate_by = settings.SKULBUS_PAGINATION
-    queryset = Parent.objects.all().order_by('-id')
+    queryset = Driver.objects.all().order_by('-id')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        vehicles = Bus.objects.all()
         context.update(
-            add_parent=self.get_parent_url,
+            vehicles=vehicles,
+            add_driver=self.get_parent_url,
             object_lists=self.get_wrapped_queryset(self.queryset,
-                                                   'skulbus_parents:parents-list')
+                                                   'skulbus_drivers:drivers-list')
         )
         return context
 
@@ -29,13 +33,14 @@ class ParentsListView(SkulBusLoginMixin, ListboardView, ListView):
         return self.listboard_model_cls().get_absolute_url()
 
 
-def register_parents(request):
+def register_drivers(request):
     if request.method == 'POST':
+        vehicles = request.POST.get('vehicle')
+        driving_licence = request.POST.get('driving_licence')
         username = request.POST.get("username")
         password = request.POST.get("password")
         firstname = request.POST.get("firstname")
         lastname = request.POST.get("lastname")
-        address = request.POST.get("address")
         phone = request.POST.get("phone")
         email = request.POST.get("email")
         next_url_name = request.POST.get("next_url_name")
@@ -44,14 +49,17 @@ def register_parents(request):
             user = User.objects.create_user(username=username, password=password)
             user.save()
 
-            parent, created = Parent.objects.get_or_create(
+            vehicle = Bus.objects.get(id=vehicles)
+
+            parent, created = Driver.objects.get_or_create(
                 user=user,
+                vehicle=vehicle,
                 username=username,
                 firstname=firstname,
                 lastname=lastname,
-                address=address,
                 phone=phone,
                 email=email,
+                driving_licence=driving_licence,
             )
 
             if created:
@@ -67,5 +75,5 @@ def register_parents(request):
 
         notification = res + '&message=' + message
         url = "?response=".join(
-            [reverse(f'skulbus_parents:{next_url_name}'), notification])
+            [reverse(f'skulbus_drivers:{next_url_name}'), notification])
     return redirect(url)

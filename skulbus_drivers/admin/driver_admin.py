@@ -15,14 +15,12 @@ class DriverAdmin(SimpleHistoryAdmin):
             None,
             {
                 "fields": (
+                    "vehicle",
+                    "driving_licence",
                     "firstname",
                     "lastname",
-                    "username",
-                    "password",
                     "phone",
                     "email",
-                    "driving_licence",
-                    "vehicle",
                     "active"
                 ),
             },
@@ -31,6 +29,8 @@ class DriverAdmin(SimpleHistoryAdmin):
     )
 
     list_display = (
+        "user",
+        "vehicle",
         "driving_licence",
         "firstname",
         "lastname",
