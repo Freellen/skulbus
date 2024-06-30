@@ -17,7 +17,6 @@ class StudentTripAPI(APIView):
             timezone.datetime.combine(today, timezone.datetime.min.time()))
         end_of_day = timezone.make_aware(
             timezone.datetime.combine(today, timezone.datetime.max.time()))
-        student_data = StudentTrip.objects.filter(parent_id=user.id,
-                                                  timestamp__range=(start_of_day, end_of_day))
+        student_data = StudentTrip.objects.filter(timestamp__range=(start_of_day, end_of_day))
         serializer = StudentTripSerializer(student_data, many=True)
         return Response(serializer.data)
